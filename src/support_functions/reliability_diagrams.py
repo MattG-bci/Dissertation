@@ -108,7 +108,7 @@ def _reliability_diagram_subplot(ax, bin_data,
     ax.plot([0,1], [0,1], linestyle = "--", color="gray")
     
     if draw_ece:
-        ece = (bin_data["expected_calibration_error"] * 100)
+        ece = (bin_data["expected_calibration_error"])
         ax.text(0.98, 0.02, "ECE=%.2f" % ece, color="black", 
                 ha="right", va="bottom", transform=ax.transAxes)
 
@@ -116,9 +116,9 @@ def _reliability_diagram_subplot(ax, bin_data,
     ax.set_ylim(0, 1)
     #ax.set_xticks(bins)
 
-    ax.set_title(title)
-    ax.set_xlabel(xlabel)
-    ax.set_ylabel(ylabel)
+    ax.set_title(title, fontsize=20)
+    ax.set_xlabel(xlabel, fontsize=16)
+    ax.set_ylabel(ylabel, fontsize=16)
 
     ax.legend(handles=[gap_plt, acc_plt])
 
@@ -138,9 +138,9 @@ def _confidence_histogram_subplot(ax, bin_data,
     ax.bar(positions, counts, width=bin_size * 0.9)
    
     ax.set_xlim(0, 1)
-    ax.set_title(title)
-    ax.set_xlabel(xlabel)
-    ax.set_ylabel(ylabel)
+    ax.set_title(title, fontsize=20)
+    ax.set_xlabel(xlabel, fontsize=16)
+    ax.set_ylabel(ylabel, fontsize=16)
 
     if draw_averages:
         acc_plt = ax.axvline(x=bin_data["avg_accuracy"], ls="solid", lw=3, 
@@ -174,7 +174,8 @@ def _reliability_diagram_combined(bin_data,
 
     # Also negate the ticks for the upside-down histogram.
     new_ticks = np.abs(ax[1].get_yticks()).astype(np.int)
-    ax[1].set_yticklabels(new_ticks)    
+    ax[1].set_yticklabels(new_ticks)
+
 
     plt.show()
 
